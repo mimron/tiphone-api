@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.post("/tiphone/api", async (req, res) => {
 
-  const { version, functionHead, path, body } = req.body;
+  const { version, functionHead, clientId, path, body } = req.body;
 
   let local = getDateTime();
 
@@ -20,7 +20,7 @@ app.post("/tiphone/api", async (req, res) => {
     head: {
       version: `${version}`,
       key: `${process.env.TIPHONE_SECRET_KEY}`,
-      clientId: `${process.env.TIPHONE_CLIENT_ID}`,
+      clientId: `${clientId}`,
       function: `${functionHead}`,
       reqTime: `${local.toISOString()}`,
       reqMsgId: `${Math.round(local.getTime() / 1000)}`,
